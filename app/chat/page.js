@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react"
 import { Box, Stack, TextField, Button } from '@mui/material';
+import Navbar from "../components/Navbar";
 
 export default function Chat() {
   
@@ -44,7 +45,9 @@ export default function Chat() {
     }
   };  
     return (
+    <Box> <Navbar page={"Chat"}/>
       <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center"  >
+        
         <Stack direction={'column'}  width="500px"  height="700px"  border="1px solid black" p={2} spacing={3}>
           <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" maxHeight="100%" >
             {messages.map((message, index) => (  
@@ -60,6 +63,7 @@ export default function Chat() {
             <Button variant="contained" onClick={sendMessage}> Send </Button>
           </Stack>
         </Stack>
+      </Box>
       </Box>
     );
 };

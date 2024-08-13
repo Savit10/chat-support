@@ -12,6 +12,7 @@ export default function AuthForm() {
             [name]: value 
         }
     ));
+    console.log(user);
   }
 
   function handleLogin() {
@@ -20,8 +21,8 @@ export default function AuthForm() {
   return (
     <Box display="flex" justifyContent="center" alignItems="center" height="100vh" width="100wh">
         <Stack direction={'column'}  width="500px"  height="700px"  border="1px solid black" p={2} spacing={3}>
-            <TextField id="outlined-basic" label="Email" variant="outlined" value={user.email} onChange={handleChange} fullWidth/>
-            <TextField id="outlined-basic" label="Password" variant="outlined" value={user.password} onChange={handleChange} fullWidth />
+            <TextField id="outlined-basic" label="Email" name="email" variant="outlined" value={user.email} onChange={handleChange} fullWidth/>
+            <TextField id="outlined-basic" label="Password" name="password" type="password" variant="outlined" value={user.password} onChange={handleChange} fullWidth />
             <Button variant="contained" onClick={handleLogin}> Login </Button>
         </Stack>
     </Box>
