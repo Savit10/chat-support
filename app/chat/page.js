@@ -1,10 +1,10 @@
 "use client"
-import React, { useState } from "react"
-import { Box, Stack, TextField, Button } from '@mui/material';
+import React, { useState } from "react";
+import { Box, Stack, TextField, Button, Typography } from '@mui/material';
 
 export default function Chat() {
   
-  const [messages, setMessages] = useState([{role: 'assistant', content: 'Hi! I am the Headstarter support assistant. How can I help you today?'},]);
+  const [messages, setMessages] = useState([{role: 'assistant', content: 'Welcome! You’ve reached the Ontario Consumer Rights Assistant. Let’s tackle your consumer rights queries together. What can I help you with today?'}]);
   const [message, setMessage] = useState('');
 
   const sendMessage = async () => {
@@ -42,24 +42,52 @@ export default function Chat() {
     } catch (error) {
       console.error('Error:', error);
     }
-  };  
-    return (
-      <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center"  >
-        <Stack direction={'column'}  width="500px"  height="700px"  border="1px solid black" p={2} spacing={3}>
-          <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" maxHeight="100%" >
-            {messages.map((message, index) => (  
-              <Box key={index} display="flex" justifyContent={message.role === 'assistant' ? 'flex-start' : 'flex-end'}>
-                <Box bgcolor={message.role === 'assistant' ? 'primary.main' : 'secondary.main'} color="white" borderRadius={16} p={3}>
-                  {message.content} 
-                </Box>
-              </Box>
-            ))}
-          </Stack>
-          <Stack direction={'row'} spacing={2}>
-            <TextField  label="Message"  fullWidth  value={message}  onChange={(e) => setMessage(e.target.value)} />
-            <Button variant="contained" onClick={sendMessage}> Send </Button>
-          </Stack>
+  };
+
+  return (
+    <Box width="100%" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center"
+         sx={{ background: 'linear-gradient(to right, #3a7bd5, #3a6073)',
+              backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <Stack direction={'column'} width="100%" height="100%" p={2} spacing={3} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(10px)' }}>
+        <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" justifyContent={messages.length === 1 ? "center" : "flex-start"}>
+          {messages.map((message, index) => (  
+            <Box key={index} display="flex" justifyContent={message.role === 'assistant' ? 'flex-start' : 'flex-end'} alignItems="center">
+              <Typography variant="body1" color={message.role === 'assistant' ? "text.primary" : "text.secondary"}
+                sx={{
+                  bgcolor: message.role === 'assistant' ? '#E3F2FD' : '#C8E6C9',
+                  p: 2,
+                  borderRadius: 2,
+                  maxWidth: '70%'
+                }}>
+                {message.content}
+              </Typography>
+            </Box>
+          ))}
         </Stack>
-      </Box>
-    );
+        <Stack direction={'row'} spacing={2}>
+          <TextField label="Message" fullWidth value={message} variant="outlined" onChange={(e) => setMessage(e.target.value)} 
+            sx={{ 
+              input: { color: '#3E4E50' }, 
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: '#C8E6C9' }, 
+                '&:hover fieldset': { borderColor: '#A5D6A7' }, 
+                '&.Mui-focused fieldset': { borderColor: '#A5D6A7' },
+              },
+              '& .MuiInputLabel-root': { 
+                color: '#607D8B', 
+                '&.Mui-focused': { 
+                  color: '#A5D6A7',
+                }
+              },
+              backgroundColor: '#EEEEEE'
+            }} />
+          <Button variant="contained" onClick={sendMessage} 
+            sx={{ backgroundColor: '#C8E6C9', 
+                 '&:hover': { backgroundColor: '#A5D6A7' },
+                  color: '#3E4E50'
+                 }}>Send</Button>
+        </Stack>
+      </Stack>
+    </Box>
+  );
 };
