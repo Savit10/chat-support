@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
+import Link from 'next/link';
 import Divider from '@mui/material/Divider';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItem from '@mui/material/ListItem';
@@ -23,29 +24,49 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Home', 'Chat'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        <ListItem key={'Home'} disablePadding>
+          <Link href='/'>
           <ListItemButton>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={'Home'} />
           </ListItemButton>
+          </Link>
         </ListItem>
-        ))}
+        <ListItem key={'Chat'} disablePadding>
+          <Link href='/chat'>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+            <ListItemText primary={'Chat'} />
+            </ListItemButton>
+          </Link>
+        </ListItem>
       </List>
       <Divider />
       <List>
-        {['Login', 'Register'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </ListItem>
-        ))}
+        <ListItem key={'Login'} disablePadding>
+          <Link href='/auth/login'>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={'Login'} />
+              </ListItemButton>
+          </Link>
+          </ListItem>
+          <ListItem key={'Register'} disablePadding>
+            <Link href='/auth/register'>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+            <ListItemText primary={'Register'} />
+            </ListItemButton>
+            </Link>
+          </ListItem>
       </List>
     </Box>
   );

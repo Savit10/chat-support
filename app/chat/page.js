@@ -9,13 +9,13 @@ export default function Chat() {
   const { userLoggedIn } = useAuth();
   const router = useRouter();
 
+  
+  const [messages, setMessages] = useState([{role: 'assistant', content: 'Welcome! You’ve reached the Ontario Consumer Rights Assistant. Let’s tackle your consumer rights queries together. What can I help you with today?'}]);
+  const [message, setMessage] = useState('');
   if (!userLoggedIn) {
     router.replace('/auth/login');
     return null;
   }
-  const [messages, setMessages] = useState([{role: 'assistant', content: 'Welcome! You’ve reached the Ontario Consumer Rights Assistant. Let’s tackle your consumer rights queries together. What can I help you with today?'}]);
-  const [message, setMessage] = useState('');
-
   const sendMessage = async () => {
     const newMessage = {role: 'user', content: message};
     setMessage('');
