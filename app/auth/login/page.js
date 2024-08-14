@@ -1,13 +1,47 @@
 "use client"
 import AuthForm from "@/app/components/AuthForm";
-import React from "react";
+import React, {useState} from "react";
 import Navbar from "@/app/components/Navbar";
+import { doSignInWithEmailAndPassword, doSignInWithGoogle } from "@/app/lib/auth";
+import { useAuth } from "../../context/authContext";
+import { useRouter } from 'next/navigation';
 
 export default function Login () {
+    const [isSigningIn, setIsSigningIn] = useState(false);
+    const [error, setError] = useState('');
+    const { userLoggedIn } = useAuth();
+
+    const router = useRouter();
+
+    if (userLoggedIn) {
+        router.replace('/chat'); // Redirect to /chat page
+        return null; // Return null to prevent further rendering
+    }
+
+    const handleLogin = async (user) => {
+        if (!isSigningIn) {
+            setIsSigningIn(true);
+            await doSignInWithEmailAndPassword(user.email, user.password).catch((error) => {
+                setError(error.message);
+                setIsSigningIn(false);
+            })
+        }
+    }
+
+    /* const onGoogleSignIn = async () => {
+        if (!isSigningIn) {
+            setIsSigningIn(true);
+            await doSignInWithGoogle().catch((error) => {
+                setError(error.message);
+                setIsSigningIn(false);
+            })
+        }
+    } */
     return (
         <div>
-            <Navbar page={"Login"}/>
-            <AuthForm />
+            <Navbar page={"Login"} />
+            <AuthForm page={"Login"} login={handleLogin} /* google={onGoogleSignIn} */ signingIn={isSigningIn} error={error}/>
+            {error && ( <span className='text-red-600 font-bold'>{error} </span>)}
         </div>
     )
 }

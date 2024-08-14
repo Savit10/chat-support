@@ -1,9 +1,18 @@
 "use client"
 import React, { useState } from "react";
 import { Box, Stack, TextField, Button, Typography } from '@mui/material';
+import { useAuth } from "../context/authContext";
+import { useRouter } from 'next/navigation';
+import Navbar from "../components/Navbar";
 
 export default function Chat() {
-  
+  const { userLoggedIn } = useAuth();
+  const router = useRouter();
+
+  if (!userLoggedIn) {
+    router.replace('/auth/login');
+    return null;
+  }
   const [messages, setMessages] = useState([{role: 'assistant', content: 'Welcome! You’ve reached the Ontario Consumer Rights Assistant. Let’s tackle your consumer rights queries together. What can I help you with today?'}]);
   const [message, setMessage] = useState('');
 
@@ -45,9 +54,11 @@ export default function Chat() {
   };
 
   return (
+    <Box><Navbar page={"Chat"} />
     <Box width="100%" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center"
          sx={{ background: 'linear-gradient(to right, #3a7bd5, #3a6073)',
               backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        
       <Stack direction={'column'} width="100%" height="100%" p={2} spacing={3} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(10px)' }}>
         <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" justifyContent={messages.length === 1 ? "center" : "flex-start"}>
           {messages.map((message, index) => (  
@@ -88,6 +99,7 @@ export default function Chat() {
                  }}>Send</Button>
         </Stack>
       </Stack>
+    </Box>
     </Box>
   );
 };
