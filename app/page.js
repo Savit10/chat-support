@@ -25,7 +25,7 @@ export default function Home() {
             </Typography>
             <Box
                 component="img"
-                src="./logo.webp" 
+                src="/logo.webp" 
                 alt="Consumer Compass Logo"
                 sx={{ width: '150px', height: 'auto', marginBottom: '16px' }} 
             />
