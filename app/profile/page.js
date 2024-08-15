@@ -7,8 +7,8 @@ import Box from '@mui/material/Box';
 
 export default function Profile() {
     const { currentUser, userLoggedIn } = useAuth();
+    const router = useRouter();
     if (!userLoggedIn) {
-        const router = useRouter();
         router.replace('/auth/login');
         return null;
     }

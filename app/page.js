@@ -31,8 +31,8 @@ export default function Home() {
             />
             <Typography variant="body1" sx={{ maxWidth: '800px', marginTop: '16px', fontSize: '1.5rem' }}>
                 This chatbot is designed to help you navigate the complex world of consumer rights in Ontario. 
-                Whether you're dealing with a tricky refund, need guidance on warranties, or want to know your rights when making a purchase, 
-                our chatbot is here to provide quick and accurate information tailored to Ontario's regulations. 
+                Whether you&apos;re dealing with a tricky refund, need guidance on warranties, or want to know your rights when making a purchase, 
+                our chatbot is here to provide quick and accurate information tailored to Ontario&apos;s regulations. 
                 Get started by signing up (or logging in if you have an existing account) from the menu.
             </Typography>
         </Box>
