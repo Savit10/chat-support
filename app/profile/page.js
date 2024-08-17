@@ -9,7 +9,7 @@ export default function Profile() {
     const { currentUser, userLoggedIn } = useAuth();
     const router = useRouter();
     if (!userLoggedIn) {
-        router.replace('/auth/login');
+        router.push('/auth/login');
         return null;
     }
     return (

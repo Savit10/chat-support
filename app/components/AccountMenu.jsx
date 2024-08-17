@@ -28,7 +28,7 @@ export default function AccountMenu() {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 100 }}></Typography>
         <Tooltip title="Account settings">
-          <IconButton
+          <div
             onClick={handleClick}
             size="small"
             sx={{ ml: 2 }}
@@ -37,7 +37,7 @@ export default function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
+          </div>
         </Tooltip>
       </Box>
       <Menu

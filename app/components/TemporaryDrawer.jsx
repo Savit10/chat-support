@@ -12,9 +12,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useAuth } from '../context/authContext';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
+  const { userLoggedIn } = useAuth();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -46,7 +48,31 @@ export default function TemporaryDrawer() {
         </ListItem>
       </List>
       <Divider />
-      <List>
+      
+        {userLoggedIn? 
+        <List>
+          <ListItem key={'Profile'} disablePadding>
+          <Link href='/profile'>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={'Profile'} />
+              </ListItemButton>
+          </Link>
+          </ListItem>
+          <ListItem key={'Logout'} disablePadding>
+          <Link href='/auth/logout'>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={'Logout'} />
+              </ListItemButton>
+          </Link>
+          </ListItem>
+        </List>: 
+        <List>
         <ListItem key={'Login'} disablePadding>
           <Link href='/auth/login'>
               <ListItemButton>
@@ -67,7 +93,7 @@ export default function TemporaryDrawer() {
             </ListItemButton>
             </Link>
           </ListItem>
-      </List>
+      </List>}
     </Box>
   );
 
