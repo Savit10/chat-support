@@ -1,6 +1,6 @@
 "use client"
 import AuthForm from "@/app/components/AuthForm";
-import React, {useState} from "react";
+import React, {use, useState, useEffect} from "react";
 import Navbar from "@/app/components/Navbar";
 import { doSignInWithEmailAndPassword, doSignInWithGoogle } from "@/app/lib/auth";
 import { useAuth } from "../../context/authContext";
@@ -13,10 +13,12 @@ export default function Login () {
 
     const router = useRouter();
 
-    if (userLoggedIn) {
-        router.replace('/chat'); // Redirect to /chat page
-        return null; // Return null to prevent further rendering
-    }
+    useEffect(() => {
+        if (userLoggedIn) {
+            router.replace('/chat');
+            return;
+        }
+    }, [userLoggedIn]);
 
     const handleLogin = async (user) => {
         if (!isSigningIn) {

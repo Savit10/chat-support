@@ -12,7 +12,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import Avatar from '@mui/material/Avatar';
 import { useAuth } from '../context/authContext';
+import Logout from '@mui/icons-material/Logout';
+import MessageIcon from '@mui/icons-material/Message';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
@@ -30,7 +34,7 @@ export default function TemporaryDrawer() {
           <Link href='/'>
           <ListItemButton>
             <ListItemIcon>
-              <InboxIcon />
+              <HomeIcon />
             </ListItemIcon>
             <ListItemText primary={'Home'} />
           </ListItemButton>
@@ -40,7 +44,7 @@ export default function TemporaryDrawer() {
           <Link href='/chat'>
             <ListItemButton>
               <ListItemIcon>
-                <MailIcon />
+                <MessageIcon/>
               </ListItemIcon>
             <ListItemText primary={'Chat'} />
             </ListItemButton>
@@ -55,7 +59,7 @@ export default function TemporaryDrawer() {
           <Link href='/profile'>
               <ListItemButton>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <Avatar sx={{ width: 25, height: 25 }}/>
                 </ListItemIcon>
                 <ListItemText primary={'Profile'} />
               </ListItemButton>
@@ -65,7 +69,7 @@ export default function TemporaryDrawer() {
           <Link href='/auth/logout'>
               <ListItemButton>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <Logout/>
                 </ListItemIcon>
                 <ListItemText primary={'Logout'} />
               </ListItemButton>

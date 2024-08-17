@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Stack, TextField, Button, Typography } from '@mui/material';
 import { useAuth } from "../context/authContext";
 import { useRouter } from 'next/navigation';
@@ -12,10 +12,12 @@ export default function Chat() {
   
   const [messages, setMessages] = useState([{role: 'assistant', content: 'Welcome! You’ve reached the Ontario Consumer Rights Assistant. Let’s tackle your consumer rights queries together. What can I help you with today?'}]);
   const [message, setMessage] = useState('');
-  if (!userLoggedIn) {
-    router.replace('/auth/login');
-    return null;
-  }
+  useEffect(() => {
+    if (!userLoggedIn) {
+      router.replace('/auth/login');
+      return;
+    }
+  }, [userLoggedIn]);
   const sendMessage = async () => {
     const newMessage = {role: 'user', content: message};
     setMessage('');
@@ -55,7 +57,7 @@ export default function Chat() {
 
   return (
     <Box><Navbar page={"Chat"} />
-    <Box width="100%" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center"
+    <Box width="100%" height="93vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center"
          sx={{ background: 'linear-gradient(to right, #3a7bd5, #3a6073)',
               backgroundSize: 'cover', backgroundPosition: 'center' }}>
         
