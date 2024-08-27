@@ -13,7 +13,7 @@ export default function Logout() {
             doSignOut();
         }
         router.replace('/auth/login');
-    }, []);
+    }, [userLoggedIn, router]);
 
     return null;
 }

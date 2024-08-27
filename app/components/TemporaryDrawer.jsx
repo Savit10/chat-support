@@ -10,13 +10,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import HomeIcon from '@mui/icons-material/Home';
 import Avatar from '@mui/material/Avatar';
 import { useAuth } from '../context/authContext';
-import Logout from '@mui/icons-material/Logout';
-import MessageIcon from '@mui/icons-material/Message';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ChatIcon from '@mui/icons-material/Chat';
+import LoginIcon from '@mui/icons-material/Login';
+import RegisterIcon from '@mui/icons-material/AssignmentInd';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function TemporaryDrawer() {
 
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 200 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         <ListItem key={'Home'} disablePadding>
           <Link href='/'>
@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
           <Link href='/chat'>
             <ListItemButton>
               <ListItemIcon>
-                <MessageIcon/>
+                <ChatIcon/>
               </ListItemIcon>
             <ListItemText primary={'Chat'} />
             </ListItemButton>
@@ -52,7 +52,6 @@ export default function TemporaryDrawer() {
         </ListItem>
       </List>
       <Divider />
-      
         {userLoggedIn? 
         <List>
           <ListItem key={'Profile'} disablePadding>
@@ -69,7 +68,7 @@ export default function TemporaryDrawer() {
           <Link href='/auth/logout'>
               <ListItemButton>
                 <ListItemIcon>
-                  <Logout/>
+                  <LogoutIcon/>
                 </ListItemIcon>
                 <ListItemText primary={'Logout'} />
               </ListItemButton>
@@ -81,7 +80,7 @@ export default function TemporaryDrawer() {
           <Link href='/auth/login'>
               <ListItemButton>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <LoginIcon />
                 </ListItemIcon>
                 <ListItemText primary={'Login'} />
               </ListItemButton>
@@ -91,7 +90,7 @@ export default function TemporaryDrawer() {
             <Link href='/auth/register'>
             <ListItemButton>
               <ListItemIcon>
-                <MailIcon />
+                <RegisterIcon />
               </ListItemIcon>
             <ListItemText primary={'Register'} />
             </ListItemButton>

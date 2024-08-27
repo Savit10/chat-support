@@ -18,7 +18,7 @@ export default function Login () {
             router.replace('/chat');
             return;
         }
-    }, [userLoggedIn]);
+    }, [userLoggedIn, router]);
 
     const handleLogin = async (user) => {
         if (!isSigningIn) {

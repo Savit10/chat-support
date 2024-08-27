@@ -2,14 +2,14 @@
 import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import Logout from '@mui/icons-material/Logout';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth } from '@/app/context/authContext';
 
 export default function AccountMenu() {
@@ -39,7 +39,7 @@ export default function AccountMenu() {
           </div>
         </Tooltip>
       </Box>
-      <Menu
+      <MenuIcon
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
@@ -80,11 +80,11 @@ export default function AccountMenu() {
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <LogoutIcon fontSize="small" />
           </ListItemIcon>
           <Link href="/auth/logout">Logout</Link>
         </MenuItem>
-      </Menu>
+      </MenuIcon>
     </React.Fragment>
   );
 }

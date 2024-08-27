@@ -17,7 +17,7 @@ export default function Chat() {
       router.replace('/auth/login');
       return;
     }
-  }, [userLoggedIn]);
+  }, [userLoggedIn, router]);
   const sendMessage = async () => {
     const newMessage = {role: 'user', content: message};
     setMessage('');
